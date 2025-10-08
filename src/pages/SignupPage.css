@@ -1,0 +1,76 @@
+/* src/pages/SignupPage.css */
+
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 80px 24px;
+  box-sizing: border-box;
+}
+
+.main-content {
+  flex-grow: 1;
+}
+
+.welcome-title {
+  font-family: 'Gowun Batang', serif;
+  font-size: 2.2rem;
+  margin: 0 0 16px 0;
+}
+
+.welcome-subtitle {
+  font-size: 1rem;
+  color: #777;
+  margin: 0 0 48px 0;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bottom-button-group {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  padding-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: linear-gradient(to top, rgba(248, 248, 248, 1) 50%, rgba(248, 248, 248, 0));
+}
+
+.login-text {
+  font-size: 0.9rem;
+  color: #777;
+  text-align: center;
+}
+
+.login-link {
+  color: #121212;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .signup-container {
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+  }
+  .main-content {
+    flex-grow: 0;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  .bottom-button-group {
+    position: static;
+    background: none;
+    width: 100%;
+    max-width: 400px;
+  }
+}

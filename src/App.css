@@ -1,0 +1,12 @@
+/* src/App.css */
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* index.css에서 물려받은 body 높이를 100% 사용 */
+}
+
+.main-content-area {
+  flex-grow: 1; /* 헤더(60px)를 제외한 모든 남은 공간의 높이를 차지함 */
+  /* 이 영역이 높이를 가져야, 이 안의 지도도 높이를 가질 수 있습니다. */
+}

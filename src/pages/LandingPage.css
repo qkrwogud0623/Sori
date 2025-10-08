@@ -1,0 +1,74 @@
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  color: #333;
+}
+
+.main-content {
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-content h1 {
+  font-family: 'Gowun Batang', serif;
+  font-size: 2.2rem;
+  word-break: keep-all;
+}
+
+.main-content p {
+  color: #777;
+  font-size: 1rem;
+}
+
+.bottom-button-group {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  padding-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: linear-gradient(to top, rgba(248, 248, 248, 1) 50%, rgba(248, 248, 248, 0));
+}
+
+/* --- Animation --- */
+.fade-in-1 { animation: fadeIn 1s ease-in-out; }
+.fade-in-2 { animation: fadeIn 1.5s ease-in-out; }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Responsive --- */
+@media (min-width: 768px) {
+  .main-content h1 {
+    font-size: 2.8rem;
+  }
+  .main-content p {
+    font-size: 1.2rem;
+  }
+  .bottom-button-group {
+    position: static; /* 화면이 커지면 하단 고정 해제 */
+    background: none;
+    flex-direction: row; /* 버튼을 가로로 배치 */
+    width: 100%;
+    max-width: 400px;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,72 @@
+/* src/components/common/Header.css */
+
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  padding: 0 24px;
+  background-color: rgba(248, 248, 248, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 100;
+
+  /* 로고와 메뉴를 양쪽 끝으로 보내기 위한 설정 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  font-family: 'Gowun Batang', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #121212;
+}
+
+/* --- 메뉴 관련 스타일 (새로 추가) --- */
+.header-menu-container {
+  position: relative; /* 드롭다운 메뉴의 기준점 */
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 52px; /* 헤더 바로 아래 */
+  right: 0;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  border: 1px solid #f0f0f0;
+  overflow: hidden;
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 120px;
+}
+
+.dropdown-menu a {
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f5f5f5;
+}

@@ -1,0 +1,261 @@
+/* src/pages/MainMapPage.css */
+
+.map-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- 지도 상/하단 페이드 효과 --- */
+.map-container::before, .map-container::after {
+  content: ''; position: absolute; left: 0; right: 0;
+  pointer-events: none; z-index: 2;
+}
+.map-container::before {
+  top: 0; height: 130px;
+  background: linear-gradient(to bottom, rgba(248, 248, 248, 1) 40%, rgba(248, 248, 248, 0));
+}
+.map-container::after {
+  bottom: 0; height: 200px; /* 하단 UI 전체 높이에 맞춰 페이드 영역 넓힘 */
+  background: linear-gradient(to top, rgba(248, 248, 248, 1) 40%, rgba(248, 248, 248, 0));
+}
+
+/* --- 지도 위 버튼 (통합 디자인) --- */
+.map-buttons-container {
+  position: absolute;
+  top: 100px;
+  right: 24px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.map-btn {
+  width: 40px; /* 크기를 50px로 통일 */
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s ease-out;
+}
+.map-btn:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+.map-btn:active {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transform: translateY(1px);
+}
+.map-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: #212121; /* 아이콘 색상 통일 */
+}
+
+/* --- 통합 스와이프형 하단 UI (Bottom Sheet) --- */
+.bottom-sheet-ui {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  /* 보이는 부분(플레이어) 높이를 제외한 만큼 아래로 숨김 */
+  transform: translateY(calc(100% - 142px)); 
+  
+  background-color: #ffffff;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  
+  display: flex;
+  flex-direction: column;
+
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 시트가 확장되었을 때의 스타일 */
+.bottom-sheet-ui.expanded {
+  transform: translateY(0);
+}
+
+.sheet-visible-area {
+  cursor: pointer;
+}
+
+.sheet-handle {
+  width: 100%;
+  padding: 12px;
+  cursor: grab; 
+  display: flex;
+  justify-content: center;
+  touch-action: none;
+}
+.sheet-handle-bar {
+  width: 40px;
+  height: 4px;
+  background-color: #d0d0d0;
+  border-radius: 2px;
+}
+
+/* 확장될 때 보이는 부분 */
+.sheet-expandable-area {
+  padding: 0 20px 14px 20px;
+}
+
+/* 1. 액션 버튼 영역 */
+.action-buttons-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.action-btn {
+  background: none; border: none; cursor: pointer; display: flex;
+  align-items: center; gap: 16px; /* 아이콘과 텍스트 간격 조정 */
+  font-weight: 700; color: #333; text-align: left;
+  padding: 10px;
+  border-radius: 8px; transition: background-color 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: background-color 0.2s, transform 0.1s ease-out, box-shadow 0.2s;
+}
+.action-btn:hover { 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+}
+.action-btn svg {
+  flex-shrink: 0;
+  color: #555; /* 아이콘 색상 조정 */
+}
+.action-btn:active {
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  transform: translateY(0);
+}
+.action-btn-text {
+  display: flex;
+  flex-direction: column;
+}
+.action-btn-text strong {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #333;
+}
+.action-btn-text p {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #888;
+  margin: 2px 0 0 0;
+}
+
+/* 2. 구분선 */
+.ui-divider {
+  width: 100%;
+  margin: 0 auto 14px auto;
+  border: none;
+  height: 1px;
+  background-color: #e8e8e8;
+}
+
+/* 3. 플레이어 영역 */
+.player-section {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 16px;
+  padding: 12px 20px 20px 20px;
+  box-sizing: border-box;
+  min-height: 90px;
+}
+
+.player-album-art {
+  width: 80px;
+  height: 80px;
+  background-color: #eee;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+/* 오른쪽 영역 전체 */
+.player-main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  height: 70px; /* 앨범 아트 높이와 맞춤 */
+}
+
+/* 오른쪽 상단: 제목 */
+.player-main-content h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  white-space: normal;
+  line-height: 0.7;
+}
+
+/* 오른쪽 하단: 작성자/웨이브폼 + 컨트롤 */
+.player-sub-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.player-track-info {
+  min-width: 0;
+}
+
+.player-author {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+  font-weight: bold;
+}
+
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 9px;
+  height: 16px;
+}
+.waveform-bar { width: 3px; height: 3px; background-color: #8c7ae6; border-radius: 2px; animation: wave-pulse-light 1.2s infinite ease-in-out; }
+.waveform-bar:nth-child(2) { animation-delay: 0.2s; }
+.waveform-bar:nth-child(3) { animation-delay: 0.4s; }
+.waveform-bar:nth-child(4) { animation-delay: 0.6s; }
+.waveform-bar:nth-child(5) { animation-delay: 0.8s; }
+@keyframes wave-pulse-light {
+  0%, 100% { transform: scaleY(1); background-color: #ddd; }
+  50% { transform: scaleY(4); background-color: #8c7ae6; }
+}
+.player-controls { display: flex; align-items: center; gap: 9px; flex-shrink: 0; transform: translateY(5px);}
+.control-btn { background: none; border: none; padding: 8px; margin: 0; cursor: pointer; display: flex; justify-content: center; align-items: center; color: #888; transition: color 0.2s ease; transition: color 0.2s ease, transform 0.1s ease-out;}
+.control-btn:hover { color: #888; }
+.control-btn:active {
+  color: #121212;
+  transform: scale(0.9); /* 아이콘이 살짝 작아지는 효과 */
+}
+.control-btn svg { width: 28px; height: 28px; }
+
+.play-btn { background-color: #121212; color: white; width: 43px; height: 43px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s ease-out;
+}
+.play-btn:hover { 
+  color : white;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px); 
+}
+.play-btn:active {
+  color : white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(1px);
+}
+.play-btn svg { width: 24px; height: 24px; transform: translateX(1px); }
