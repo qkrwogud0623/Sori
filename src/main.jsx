@@ -7,7 +7,7 @@ import './index.css'
 
 import App from './App.jsx';
 import LandingPage from './pages/LandingPage.jsx';
-import LoginPage from './pages.LoginPage.jsx';
+import LoginPage from './pages/LoginPage.jsx';
 import SignupPage from './pages/SignupPage.jsx';
 import MainMapPage from './pages/MainMapPage.jsx';
 
