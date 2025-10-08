@@ -7,4 +7,5 @@ export default defineConfig({
   // This option tells the server to redirect all requests to index.html
   // This is the official way to support client-side routing.
   appType: 'spa', 
+  base: "/Sori/",
 })
